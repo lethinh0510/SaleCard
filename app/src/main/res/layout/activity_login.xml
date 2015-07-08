@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/text_email"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/text_hint"
+        android:padding="10dp"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/text_pass"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Password"
+        android:textColorHint="@color/text_hint"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginBottom="20dp"
+        android:singleLine="true"/>
+
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:background="@color/button_login"
+        android:textColor="@color/text_login"
+        />
+    <TextView
+        android:id="@+id/test_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/textview_sign"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="70dp"
+        android:textSize="20dp"
+        android:textColor="@color/text_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign"/>
+
 
 </LinearLayout>

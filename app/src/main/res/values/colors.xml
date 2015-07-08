@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="splash_background">#CCFFFF</color>
+    <color name="login_background">#ff26e2ff</color>
+    <color name="button_login">#f9fffcf6</color>
+    <color name="text_login">#f961ff59</color>
+    <color name="text_hint">#ff786864</color>
+    <color name="text_sign">#ffff7c55</color>
+
 </resources>
