@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.JSONParser;
+import utils.LinkUtils;
 
 /**
  * Created by Thinh on 06/07/2015.
@@ -50,7 +51,7 @@ public class LoginActivity extends Activity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new LoginStask().execute("http://192.168.1.82/salecard/login.php");
+                new LoginStask().execute(LinkUtils.URL_LOGIN);
             }
         });
     }

@@ -17,7 +17,8 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/text_hint"
         android:padding="10dp"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:background="@drawable/login_edittext"/>
 
     <EditText
         android:id="@+id/text_pass"
@@ -30,7 +31,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:layout_marginBottom="20dp"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:background="@drawable/login_edittext"/>
 
 
     <Button
@@ -42,6 +44,7 @@
         android:text="@string/login"
         android:background="@color/button_login"
         android:textColor="@color/text_login"
+
         />
     <TextView
         android:id="@+id/test_error"
@@ -49,7 +52,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        />
     <TextView
         android:id="@+id/textview_sign"
         android:layout_marginTop="30dp"

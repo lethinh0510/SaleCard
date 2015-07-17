@@ -6,5 +6,7 @@
     <color name="text_login">#f961ff59</color>
     <color name="text_hint">#ff786864</color>
     <color name="text_sign">#ffff7c55</color>
+    <color name="left_drawer_devider">#ffff7c55</color>
+    <color name="edit_text_login">#fffffdfd</color>
 
 </resources>

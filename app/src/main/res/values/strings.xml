@@ -6,4 +6,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="login">LOGIN</string>
     <string name="sign">Not a member? Sign up now</string>
+    <array name="planets_array">
+        <item>Viettel</item>
+        <item>Mobifone</item>
+        <item>Vinafone</item>
+    </array>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
 </resources>
