@@ -10,6 +10,7 @@
         <item>Viettel</item>
         <item>Mobifone</item>
         <item>Vinafone</item>
+        <item>Đăng xuất</item>
     </array>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>

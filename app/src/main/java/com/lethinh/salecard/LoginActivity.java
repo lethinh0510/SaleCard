@@ -1,7 +1,6 @@
 package com.lethinh.salecard;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -21,8 +20,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.JSONParser;
-import utils.LinkUtils;
+import com.lethinh.utils.JSONParser;
+import com.lethinh.utils.LinkUtils;
 
 /**
  * Created by Thinh on 06/07/2015.

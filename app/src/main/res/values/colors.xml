@@ -8,5 +8,6 @@
     <color name="text_sign">#ffff7c55</color>
     <color name="left_drawer_devider">#ffff7c55</color>
     <color name="edit_text_login">#fffffdfd</color>
+    <color name="item_pressed">#ff40ffeb</color>
 
 </resources>

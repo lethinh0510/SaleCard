@@ -14,5 +14,7 @@
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
         android:divider="@color/left_drawer_devider"
-        android:dividerHeight="1dp"/>
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector_drawer"
+        android:background="@color/edit_text_login"/>
 </android.support.v4.widget.DrawerLayout>
