@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.lethinh.salecard.R;
 import com.lethinh.utils.NavDrawerItem;
-
 import java.util.ArrayList;
 
 /**
@@ -45,18 +44,14 @@ public class NavDrawerAdpter extends BaseAdapter {
             LayoutInflater Iinflater=(LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view=Iinflater.inflate(R.layout.drawer_list_item,null);
-
         }
         ImageView icon=(ImageView)view.findViewById(R.id.icon_item_drawer);
         TextView title=(TextView)view.findViewById(R.id.title_drawer);
         TextView count=(TextView)view.findViewById(R.id.count_drawer);
-
         icon.setImageResource(NavDrawerItems.get(i).getIcon());
         title.setText(NavDrawerItems.get(i).getTitle());
         count.setText(NavDrawerItems.get(i).getCount()+"");
-
-
-
         return view;
-    }
+    }           
+
 }

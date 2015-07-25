@@ -1,6 +1,7 @@
 package com.lethinh.salecard;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.lethinh.adapters.NavDrawerAdpter;
 import com.lethinh.utils.DBHelp;
@@ -28,14 +30,25 @@ public class MainActivity extends Activity {
     ActionBarDrawerToggle mDrawerToggle;
     ArrayList<NavDrawerItem> itemsDrawer;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mPlantTitles=getResources().getStringArray(R.array.planets_array);
+
+        ListCardFragment cardFragment= new ListCardFragment();
+        Bundle bundle= new Bundle();
+        bundle.putString("PRODUCT",mPlantTitles[0]);
+        cardFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_frame,cardFragment).commit();
+
+
         DBHelp bd= new DBHelp(getApplicationContext());
         SQLiteDatabase database= bd.getWritableDatabase();
         itemsDrawer= new ArrayList<NavDrawerItem>();
-        mPlantTitles=getResources().getStringArray(R.array.planets_array);
+
 
         itemsDrawer.add(new NavDrawerItem(mPlantTitles[0],R.drawable.logo_viettel,1));
         itemsDrawer.add(new NavDrawerItem(mPlantTitles[1],R.drawable.logo_mobifone,2));
@@ -49,6 +62,12 @@ public class MainActivity extends Activity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ListCardFragment cardFragment= new ListCardFragment();
+                Bundle bundle= new Bundle();
+                bundle.putString("PRODUCT",mPlantTitles[i]);
+                cardFragment.setArguments(bundle);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, cardFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
             }
         });
@@ -104,8 +123,31 @@ public class MainActivity extends Activity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(getApplicationContext(),SettingActivity.class));
             return true;
+        }else if(id==R.id.action_add_card){
+            showDialogAddCard();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void showDialogAddCard(){
+
+        Dialog dialog= new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_card);
+        dialog.setTitle("ADD CARD");
+        Spinner spinnerProduct= (Spinner)dialog.findViewById(R.id.spinner_product);
+        String []producCard={mPlantTitles[0],mPlantTitles[1],mPlantTitles[2]};
+        ArrayAdapter<CharSequence> adapter= new ArrayAdapter<CharSequence>(
+         this,android.R.layout.simple_spinner_item,producCard);
+        spinnerProduct.setAdapter(adapter);
+
+        Spinner spinnerPrice= (Spinner)dialog.findViewById(R.id.spinner_price);
+       // int[] priceArray=getResources().getIntArray(R.array.price_array);
+        Integer[]priceArray=new Integer[]{20,50,100};
+        ArrayAdapter<Integer> adapter1= new ArrayAdapter<Integer>(
+               this,android.R.layout.simple_spinner_item,priceArray);
+
+        spinnerPrice.setAdapter(adapter1);
+        dialog.show();
     }
 }
