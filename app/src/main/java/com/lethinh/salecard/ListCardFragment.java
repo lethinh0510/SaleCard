@@ -1,12 +1,14 @@
 package com.lethinh.salecard;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lethinh.adapters.ListCardAdapter;
@@ -44,9 +46,15 @@ public class ListCardFragment extends Fragment {
         super.onStart();
         cards= new ArrayList<Card>();
         Bundle bundle= getArguments();
-        String product=bundle.getString("PRODUCT");
+        String product=bundle.getString("PRODUCT").toLowerCase();
         Log.e("PRODUCT", product);
         new GetCardsTask().execute(LinkUtils.URL_GET_BY_PRODUCT, product);
+        lvCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    startActivity(new Intent(getActivity(),DetailCardActivity.class));
+            }
+        });
 
 
     }
@@ -57,7 +65,6 @@ public class ListCardFragment extends Fragment {
         protected JSONObject doInBackground(String... strings) {
             List<NameValuePair> params= new ArrayList<>();
             params.add(new BasicNameValuePair("product", strings[1]));
-
             JSONObject jsonObject=parser.makeHttpRequest(strings[0], "GET", params);
             Log.e("JSON: ",jsonObject.toString());
             return jsonObject;

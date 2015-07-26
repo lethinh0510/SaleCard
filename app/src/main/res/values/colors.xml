@@ -9,5 +9,6 @@
     <color name="left_drawer_devider">#ffff7c55</color>
     <color name="edit_text_login">#fffffdfd</color>
     <color name="item_pressed">#ff40ffeb</color>
+    <color name="item_divider">#ffffffff</color>
 
 </resources>

@@ -6,4 +6,5 @@ package com.lethinh.utils;
 public class LinkUtils {
     public static final String URL_LOGIN="http://192.168.1.82/salecard/login.php";
     public static final String URL_GET_BY_PRODUCT="http://192.168.1.82/salecard/get_card_by_product.php";
+    public static final String URL_INSERT="http://192.168.1.82/salecard/insert_card.php";
 }

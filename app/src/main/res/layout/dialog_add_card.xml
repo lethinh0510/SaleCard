@@ -57,4 +57,17 @@
         android:id="@+id/spinner_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_below="@id/spinner_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"/>
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/spinner_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"/>
 </RelativeLayout>
