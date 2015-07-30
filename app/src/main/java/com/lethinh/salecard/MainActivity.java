@@ -29,6 +29,7 @@ import com.lethinh.utils.NavDrawerItem;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPlantTitles=getResources().getStringArray(R.array.planets_array);
-
+        Log.e("ACTIVITY:", "oncreated");
         cardFragment= new ListCardFragment();
         Bundle bundle= new Bundle();
         bundle.putString("PRODUCT", mPlantTitles[0]);
@@ -64,15 +65,12 @@ public class MainActivity extends Activity {
         SQLiteDatabase database= bd.getWritableDatabase();
         itemsDrawer= new ArrayList<NavDrawerItem>();
 
+        new CountCardTask().execute(LinkUtils.URL_GET_COUNT_CARD);
 
-        itemsDrawer.add(new NavDrawerItem(mPlantTitles[0],R.drawable.logo_viettel,1));
-        itemsDrawer.add(new NavDrawerItem(mPlantTitles[1],R.drawable.logo_mobifone,2));
-        itemsDrawer.add(new NavDrawerItem(mPlantTitles[2],R.drawable.logo_vinaphone,4));
-        itemsDrawer.add(new NavDrawerItem(mPlantTitles[3],R.drawable.logo_logout,0));
 
         mDrawerLayout= (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList=(ListView)findViewById(R.id.left_drawer);
-        mDrawerList.setAdapter(new NavDrawerAdpter(getApplicationContext(),itemsDrawer));
+
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -181,7 +179,7 @@ public class MainActivity extends Activity {
                 String code= edCode.getText().toString();
                 String seri= edSeri.getText().toString();
                 String price= spinnerPrice.getSelectedItem().toString();
-                new InsertCardTask().execute(LinkUtils.URL_INSERT, product, code,seri,price);
+                new InsertCardTask().execute(LinkUtils.URL_INSERT, product, code, seri, price);
                 Toast.makeText(getApplicationContext(),"Add Success",Toast.LENGTH_LONG).show();
                 dialog.dismiss();
                 cardFragment= new ListCardFragment();
@@ -191,6 +189,9 @@ public class MainActivity extends Activity {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.content_frame, cardFragment).commit();
 
+                new CountCardTask().execute(LinkUtils.URL_GET_COUNT_CARD);
+
+
             }
         });
 
@@ -199,8 +200,6 @@ public class MainActivity extends Activity {
     }
     private class InsertCardTask extends AsyncTask<String,Void,JSONObject>{
         private JSONParser parser= new JSONParser();
-
-
         @Override
         protected JSONObject doInBackground(String... strings) {
             List<NameValuePair> params= new ArrayList<>();
@@ -215,6 +214,37 @@ public class MainActivity extends Activity {
         protected void onPostExecute(JSONObject jsonObject) {
             super.onPostExecute(jsonObject);
             Log.e("JSON:",jsonObject.toString());
+        }
+    }
+
+    private class CountCardTask extends AsyncTask<String,Void,JSONObject>{
+        private JSONParser parser= new JSONParser();
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            List<NameValuePair> param=new ArrayList<>();
+            param.add(new BasicNameValuePair("",""));
+
+            return parser.makeHttpRequest(strings[0],"GET",param);
+        }
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            Log.e("COUNT:", jsonObject.toString());
+            try {
+                int countViettel= Integer.parseInt(jsonObject.getString("viettel"));
+                int countMobi= Integer.parseInt(jsonObject.getString("mobifone"));
+                int countVina= Integer.parseInt(jsonObject.getString("vinafone"));
+                Log.e("MOBIFONE",countMobi+"");
+                itemsDrawer.clear();
+                itemsDrawer.add(new NavDrawerItem(mPlantTitles[0], R.drawable.logo_viettel, countViettel));
+                itemsDrawer.add(new NavDrawerItem(mPlantTitles[1],R.drawable.logo_mobifone,countMobi));
+                itemsDrawer.add(new NavDrawerItem(mPlantTitles[2], R.drawable.logo_vinaphone, countVina));
+                itemsDrawer.add(new NavDrawerItem(mPlantTitles[3], R.drawable.logo_logout, 0));
+                mDrawerList.setAdapter(new NavDrawerAdpter(getApplicationContext(), itemsDrawer));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

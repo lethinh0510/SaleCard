@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,21 +40,32 @@ public class ListCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_cards,container,false);
         lvCards=(ListView)view.findViewById(R.id.list_cards);
+        Log.e("Fragment:","onCreatView");
         return  view;
 
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.e("Fragment:", "onActivityCreated");
+    }
+
     @Override
     public void onStart() {
         super.onStart();
+        Log.e("Fragment:","onStart");
         cards= new ArrayList<Card>();
-        Bundle bundle= getArguments();
+        final Bundle bundle= getArguments();
         String product=bundle.getString("PRODUCT").toLowerCase();
         Log.e("PRODUCT", product);
         new GetCardsTask().execute(LinkUtils.URL_GET_BY_PRODUCT, product);
         lvCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    startActivity(new Intent(getActivity(),DetailCardActivity.class));
+              Intent intent=  new Intent(getActivity(),DetailCardActivity.class);
+                intent.putExtra("IDCARD",  cards.get(i));
+                startActivity(intent);
             }
         });
 

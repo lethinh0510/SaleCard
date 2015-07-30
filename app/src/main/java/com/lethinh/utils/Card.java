@@ -1,9 +1,11 @@
 package com.lethinh.utils;
 
+import java.io.Serializable;
+
 /**
  * Created by Thinh on 18/07/2015.
  */
-public class Card {
+public class Card implements Serializable {
     private int id;
     private String product;
     private String code;

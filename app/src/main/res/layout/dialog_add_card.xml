@@ -28,6 +28,7 @@
         android:layout_toRightOf="@id/label_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Code"/>
     <TextView
         android:layout_below="@id/edit_code"
@@ -42,9 +43,9 @@
         android:layout_toRightOf="@id/label_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="seri"/>
     <TextView
-
         android:layout_below="@+id/edit_seri"
         android:id="@+id/label_price"
         android:layout_width="wrap_content"
